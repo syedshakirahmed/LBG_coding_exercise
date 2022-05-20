@@ -1,0 +1,13 @@
+server:
+  port: 8850
+management:
+  endpoint:
+    health:
+      enabled: true
+    metrics:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
