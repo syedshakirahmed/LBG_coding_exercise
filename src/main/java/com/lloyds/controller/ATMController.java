@@ -1,26 +1,20 @@
 package com.lloyds.controller;
 
 
-import com.lloyds.dto.AtmResponse;
 import com.lloyds.dto.ResponseBean;
-import com.lloyds.pojo.ATM;
 import com.lloyds.service.AtmService;
-import com.lloyds.util.CommonUtil;
-import com.lloyds.util.HttpUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/atmdetails")
 @Slf4j
 public class ATMController {
     private final AtmService atmService;
@@ -30,19 +24,19 @@ public class ATMController {
     }
 
 
-    @Operation(summary = "Get a designated ATM information by id")
+    @Operation(summary = "Get ATM details by identification ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "ATM information found",
+            @ApiResponse(responseCode = "200", description = "ATM Details found",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ResponseBean.class)) }),
-            @ApiResponse(responseCode = "400", description = "input url is incorrect",
+            @ApiResponse(responseCode = "400", description = "Incorrect input url ",
                     content = @Content),
-            @ApiResponse(responseCode = "404", description = "Designated ATM information not found",
+            @ApiResponse(responseCode = "404", description = "Required ATM Details not found",
                     content = @Content) })
-    @GetMapping("/atm")
+    @GetMapping()
     @ResponseBody
-    public ResponseBean getATMbyId(@RequestParam String url, @RequestParam String identification) {
-        ResponseBean responseBean = atmService.getATMByIdentification(url, identification);
+    public ResponseBean getATMDetails(@RequestParam String url, @RequestParam String identification) {
+        ResponseBean responseBean = atmService.getATMDetails(url, identification);
         if (responseBean.isSuccess()) {
             return responseBean;
         } else if (responseBean.getCode() == 404) {

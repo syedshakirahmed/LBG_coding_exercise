@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Lloyds Bank ATM info open API", description = "This API provides information about all Llyods ATMs across the UK"))
+@OpenAPIDefinition(info = @Info(title = "Lloyds Bank ATM details open API", description = "This API provides information about all Llyods Bank ATMs across the UK"))
 public class MainApplication {
 
     public static void main(String[] args) {

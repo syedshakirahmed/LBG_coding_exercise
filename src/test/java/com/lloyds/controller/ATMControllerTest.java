@@ -27,7 +27,7 @@ public class ATMControllerTest {
     @DisplayName("invalid url, should return 400(bad request)")
     @Test
     void shouldReturnBadRequest() throws Exception {
-        mockMvc.perform(get("/api/v1/atm").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms1").param("identification", "LFFFBC11"))
+        mockMvc.perform(get("/api/v1/atmdetails").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms1").param("identification", "LF3DAC11"))
                 .andDo(print())
                 .andExpect(
                         status().isBadRequest());
@@ -36,7 +36,7 @@ public class ATMControllerTest {
     @DisplayName("invalid id, should return 404(not found)")
     @Test
     void shouldReturnNotFound() throws Exception {
-        mockMvc.perform(get("/api/v1/atm").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms").param("identification", "1111"))
+        mockMvc.perform(get("/api/v1/atmdetails").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms").param("identification", "LF3DAC1111"))
                 .andDo(print())
                 .andExpect(
                         status().isNotFound());
@@ -46,11 +46,11 @@ public class ATMControllerTest {
     @DisplayName("valid url and valid id, should return 200 OK")
     @Test
     void shouldReturnOK() throws Exception {
-        mockMvc.perform(get("/api/v1/atm").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms").param("identification", "LFFFBC11"))
+        mockMvc.perform(get("/api/v1/atmdetails").param("url", "https://api.lloydsbank.com/open-banking/v2.2/atms").param("identification", "LF3DAC11"))
                 .andDo(print())
                 .andExpect(
                         status().isOk())
-                .andExpect(content().string(containsString("LFFFBC11")));
+                .andExpect(content().string(containsString("LF3DAC11")));
 
     }
 }
